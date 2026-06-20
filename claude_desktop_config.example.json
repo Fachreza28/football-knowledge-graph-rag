@@ -1,0 +1,10 @@
+{
+  "mcpServers": {
+    "football-graph": {
+      "command": "<python-path>",
+      "args": [
+        "<project-path>/football_mcp.py"
+      ]
+    }
+  }
+}

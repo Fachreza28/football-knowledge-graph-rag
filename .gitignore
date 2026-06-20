@@ -1,0 +1,20 @@
+# Environment
+.env
+
+# Python
+__pycache__/
+*.pyc
+
+# Virtual Environment
+.venv/
+venv/
+
+# IDE
+.idea/
+.vscode/
+
+# Claude Desktop MCP Config
+claude_desktop_config.json
+
+# Local configuration files
+*.local.json
