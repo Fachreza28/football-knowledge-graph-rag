@@ -569,42 +569,6 @@ Football MCP Server
 Neo4j Database
 ```
 
----
-
-# Verify the Connection
-
-Open ChatGPT and run:
-
-```text
-UAS_GRAPH project info
-```
-
-Expected output:
-
-```text
-Football Knowledge Graph
-
-Data Source:
-- Wikidata
-- DBpedia
-
-Entity:
-- Athlete
-- Club
-- Country
-
-Graph Analytics:
-- Degree Centrality
-- Jaccard Similarity
-- Louvain Community Detection
-
-Graph Machine Learning:
-- FastRP Embedding
-- KNN Similarity
-- K-Means Clustering
-```
-
-If the information is displayed successfully, the MCP server, tunnel client, and ChatGPT connector are properly connected.
 ## Step 3 — Start the Tunnel Client
 
 Open a second terminal and run:
