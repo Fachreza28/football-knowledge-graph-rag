@@ -427,6 +427,184 @@ Available tools:
 
 ---
 
+# Tunnel Client Configuration
+
+Before running the tunnel client, you must create and configure a profile that points to the local MCP server.
+
+## Step 1 — Login
+
+Authenticate the tunnel client with your OpenAI account:
+
+```bash
+.\tunnel-client login
+```
+
+Expected output:
+
+```text
+Login successful.
+```
+
+---
+
+## Step 2 — Create a Profile
+
+Create a new profile named `football`:
+
+```bash
+.\tunnel-client profile create football
+```
+
+Expected output:
+
+```text
+Profile created: football
+```
+
+---
+
+## Step 3 — Configure the Profile
+
+Configure the profile to target the local MCP server:
+
+```bash
+.\tunnel-client profile set football --target http://127.0.0.1:8000
+```
+
+Verify the configuration:
+
+```bash
+.\tunnel-client profile show football
+```
+
+Expected output:
+
+```text
+Profile: football
+
+Target:
+http://127.0.0.1:8000
+
+Status:
+Configured
+```
+
+---
+
+## Step 4 — Set the Active Profile
+
+```bash
+.\tunnel-client profile use football
+```
+
+Verify:
+
+```bash
+.\tunnel-client profile current
+```
+
+Expected output:
+
+```text
+football
+```
+
+---
+
+## Step 5 — Verify Available Profiles
+
+```bash
+.\tunnel-client profile list
+```
+
+Expected output:
+
+```text
+football
+default
+```
+
+---
+
+# Running the Tunnel
+
+After the MCP server is running and the profile has been configured, start the tunnel:
+
+```bash
+.\tunnel-client run --profile football
+```
+
+Expected output:
+
+```text
+Tunnel Connected
+
+Profile:
+football
+
+Target:
+http://127.0.0.1:8000
+```
+
+The tunnel client will securely expose the local MCP server to ChatGPT through the configured connector.
+
+---
+
+# Tunnel Architecture
+
+```text
+ChatGPT
+    │
+    ▼
+OpenAI Connector
+    │
+    ▼
+Tunnel Client
+    │
+    ▼
+Football MCP Server
+(http://127.0.0.1:8000)
+    │
+    ▼
+Neo4j Database
+```
+
+---
+
+# Verify the Connection
+
+Open ChatGPT and run:
+
+```text
+UAS_GRAPH project info
+```
+
+Expected output:
+
+```text
+Football Knowledge Graph
+
+Data Source:
+- Wikidata
+- DBpedia
+
+Entity:
+- Athlete
+- Club
+- Country
+
+Graph Analytics:
+- Degree Centrality
+- Jaccard Similarity
+- Louvain Community Detection
+
+Graph Machine Learning:
+- FastRP Embedding
+- KNN Similarity
+- K-Means Clustering
+```
+
+If the information is displayed successfully, the MCP server, tunnel client, and ChatGPT connector are properly connected.
 ## Step 3 — Start the Tunnel Client
 
 Open a second terminal and run:
