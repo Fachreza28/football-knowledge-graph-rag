@@ -383,17 +383,104 @@ MODEL_NAME=google/gemini-2.5-flash
 
 # Running the Project
 
-Start the MCP server:
+## Step 1 — Start Neo4j
+
+Make sure your Neo4j database is running.
+
+Default Neo4j URLs:
+
+```text
+http://localhost:7474
+bolt://localhost:7687
+```
+
+Verify the database status is **Running** before continuing.
+
+---
+
+## Step 2 — Start the MCP Server
+
+Open a terminal in the project directory and run:
 
 ```bash
-python football_mcp.py
+py football_mcp.py
 ```
 
 Expected output:
 
 ```text
 STARTING MCP SERVER...
+INFO: Started server process
+INFO: Waiting for application startup
+INFO: Application startup complete
 ```
+
+The MCP server will start and expose the Football Knowledge Graph tools through the Streamable HTTP transport.
+
+Available tools:
+
+- ask_graph()
+- project_info()
+- preview_graph()
+- build_graph()
+- run_cypher()
+
+---
+
+## Step 3 — Start the Tunnel Client
+
+Open a second terminal and run:
+
+```bash
+.\tunnel-client run --profile football
+```
+
+Expected output:
+
+```text
+Tunnel Connected
+Profile: football
+Target: http://127.0.0.1:8000
+```
+
+The tunnel client will connect ChatGPT to the locally running MCP server.
+
+---
+
+## Step 4 — Verify the Connection
+
+Open ChatGPT and execute:
+
+```text
+UAS_GRAPH project info
+```
+
+Expected output:
+
+```text
+Football Knowledge Graph
+
+Data Source:
+- Wikidata
+- DBpedia
+
+Entity:
+- Athlete
+- Club
+- Country
+
+Graph Analytics:
+- Degree Centrality
+- Jaccard Similarity
+- Louvain Community Detection
+
+Graph Machine Learning:
+- FastRP Embedding
+- KNN Similarity
+- K-Means Clustering
+```
+
+If the information is displayed successfully, the MCP server, tunnel client, and ChatGPT connector are properly connected.
 
 ---
 
